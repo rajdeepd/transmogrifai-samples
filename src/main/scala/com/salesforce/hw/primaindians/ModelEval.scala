@@ -16,7 +16,7 @@ object ModelEval {
   def main(args: Array[String]): Unit = {
 
       val pw = new PrintWriter(new File(outputFile ))
-      pw.write("modelName, modelType, regularizationParam, maxDepth, metricValue\n")
+      pw.write("modelName,modelType,regularizationParam,maxDepth,metricValue\n")
       val jsonStringAsObject= new JsonParser().parse(fileContents).getAsJsonObject
       val fields = jsonStringAsObject.get("fields").getAsJsonArray.get(2)
       val validationResults = fields.getAsJsonObject.get("metadata").getAsJsonObject.get("summary").
@@ -27,7 +27,10 @@ object ModelEval {
 
         val modelName = validationResults.get(i).getAsJsonObject.get("ModelName").
           toString.replaceAll("\"", "")
-        val modelType = validationResults.get(i).getAsJsonObject.get("ModelType")
+        val modelType = validationResults.get(i).getAsJsonObject.get("ModelType").toString
+          .substring(1,
+            validationResults.get(i).getAsJsonObject.get("ModelType").toString.length -1).
+          replace("\\", "")
         val modelParams = validationResults.get(i).getAsJsonObject.get("ModelParameters").getAsJsonObject
         val regParam = modelParams.get("regParam")
         val maxDepth = modelParams.get("maxDepth")
@@ -37,7 +40,7 @@ object ModelEval {
         val metricValues_ = metricValuesRaw.toString.substring(1, metricValuesRaw.toString.length -1).
           replace("\\", "")
         val metricValue = new JsonParser().parse(metricValues_).getAsJsonObject.get("value")
-        val output = modelName + ", " +  modelType + ", " + regParam + ", " + maxDepth + ", " + metricValue
+        val output = modelName + "," +  modelType + "," + regParam + "," + maxDepth + "," + metricValue
         println(output)
         pw.write(output + "\n")
       }
