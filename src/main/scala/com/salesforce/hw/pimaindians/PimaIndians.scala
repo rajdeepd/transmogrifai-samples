@@ -28,19 +28,27 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.primaindians
-
-import com.salesforce.op.features.FeatureBuilder
-import com.salesforce.op.features.types._
-
-trait PrimaIndianFeatures extends Serializable {
-  val numberOfTimesPreg = FeatureBuilder.Real[PrimaIndians].extract(_.numberOfTimesPreg.toReal).asPredictor
-  val plasmaGlucose = FeatureBuilder.Real[PrimaIndians].extract(_.plasmaGlucose.toReal).asPredictor
-  val bp = FeatureBuilder.Real[PrimaIndians].extract(_.bp.toReal).asPredictor
-  val spinThickness = FeatureBuilder.Real[PrimaIndians].extract(_.spinThickness.toReal).asPredictor
-  val serumInsulin = FeatureBuilder.Real[PrimaIndians].extract(_.serumInsulin.toReal).asPredictor
-  val bmi = FeatureBuilder.Real[PrimaIndians].extract(_.bmi.toReal).asPredictor
-  val diabetesPredigree = FeatureBuilder.Real[PrimaIndians].extract(_.diabetesPredigree.toReal).asPredictor
-  val ageInYrs = FeatureBuilder.Real[PrimaIndians].extract(_.diabetesPredigree.toReal).asPredictor
-  val piClass = FeatureBuilder.Text[PrimaIndians].extract(_.piClass.toText).asResponse
-}
+package com.salesforce.hw.pimaindians
+/*
+  Number of times pregnant.
+  Plasma glucose concentration a 2 hours in an oral glucose tolerance test.
+  Diastolic blood pressure (mm Hg).
+  Triceps skinfold thickness (mm).
+  2-Hour serum insulin (mu U/ml).
+  Body mass index (weight in kg/(height in m)^2).
+  Diabetes pedigree function.
+  Age (years).
+  Class variable (0 or 1).
+ */
+case class PimaIndians
+(
+  numberOfTimesPreg: Double,
+  plasmaGlucose: Double,
+  bp: Double,
+  spinThickness: Double,
+  serumInsulin: Double,
+  bmi: Double,
+  diabetesPredigree : Double,
+  ageInYrs : Double,
+  piClass: String
+)

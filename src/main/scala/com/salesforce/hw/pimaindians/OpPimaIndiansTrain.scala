@@ -28,38 +28,49 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.primaindians
+package com.salesforce.hw.pimaindians
 
-import com.salesforce.hw.primaindians.PrimaIndianFeatures
+import java.util.concurrent.TimeUnit
+
 import com.salesforce.op._
-import com.salesforce.op.evaluators.Evaluators
-import com.salesforce.op.readers.DataReaders
-import com.salesforce.op.stages.impl.classification.MultiClassificationModelSelector
-import com.salesforce.op.stages.impl.tuning.DataCutter
-import org.apache.spark.sql.Encoders
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
+
+import scala.concurrent.duration.Duration
 
 /**
- * TransmogrifAI MultiClass Classification example on the Prima Indians Dataset
+ * TransmogrifAI MultiClass Classification example on the Iris Dataset
  */
-class OpPrimaIndiansBase extends PrimaIndianFeatures {
+object OpPimaIndiansTrain  extends OpAppWithRunner with PimaIndianFeatures {
 
-  implicit val piEncoder = Encoders.product[PrimaIndians]
+  val conf = new SparkConf().setMaster("local[*]").setAppName("PimaPrediction")
+  implicit val spark = SparkSession.builder.config(conf).getOrCreate()
 
-  val piReader = DataReaders.Simple.csvCase[PrimaIndians]()
-  val labels = piClass.indexed()
+  val opPIBase = new OpPimaIndiansBase()
 
-  val features = Seq( numberOfTimesPreg, plasmaGlucose,bp,spinThickness,serumInsulin,
-    bmi,diabetesPredigree,ageInYrs).transmogrify()
+  def runner(opParams: OpParams): OpWorkflowRunner =
+    new OpWorkflowRunner(
+      workflow = opPIBase.workflow,
+      trainingReader = opPIBase.piReader,
+      scoringReader = opPIBase.piReader,
+      evaluationReader = Option(opPIBase.piReader),
+      evaluator = Option(opPIBase.evaluator),
+      featureToComputeUpTo = Option(opPIBase.features)
+    )
+  /*
+  --run-type=train \
+  --model-location=/tmp/iris-model \
+  --read-location Iris=`pwd`/src/main/resources/IrisDataset/iris.data"
+   */
+  override def main(args: Array[String]): Unit = {
+    val myArgs = Array("--run-type=train", "--model-location=/tmp/pi-model",
+      "--read-location",
+      "PrimaIndians=./src/main/resources/PrimaIndiansDataset/pimaindiansdiabetes.data"
+    )
 
-  val randomSeed = 42L
-
-  val cutter = DataCutter(reserveTestFraction = 0.2, seed = randomSeed)
-
-  val prediction = MultiClassificationModelSelector
-    .withCrossValidation(splitter = Option(cutter), seed = randomSeed)
-    .setInput(labels, features).getOutput()
-
-  val evaluator = Evaluators.MultiClassification.f1().setLabelCol(labels).setPredictionCol(prediction)
-
-  val workflow = new OpWorkflow().setResultFeatures(prediction, labels)
+    val (runType, opParams) = parseArgs(myArgs)
+    val batchDuration = Duration(opParams.batchDurationSecs.getOrElse(1), TimeUnit.SECONDS)
+    val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
+    run(runType, opParams)(spark, streaming)
+  }
 }

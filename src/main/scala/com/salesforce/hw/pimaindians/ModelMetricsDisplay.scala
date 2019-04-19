@@ -1,4 +1,4 @@
-package com.salesforce.hw.primaindians
+package com.salesforce.hw.pimaindians
 
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json._

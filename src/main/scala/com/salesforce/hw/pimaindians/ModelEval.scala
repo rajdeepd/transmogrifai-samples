@@ -1,4 +1,4 @@
-package com.salesforce.hw.primaindians
+package com.salesforce.hw.pimaindians
 
 import scala.io.Source
 import com.google.gson.Gson

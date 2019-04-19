@@ -28,27 +28,38 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.primaindians
-/*
-  Number of times pregnant.
-  Plasma glucose concentration a 2 hours in an oral glucose tolerance test.
-  Diastolic blood pressure (mm Hg).
-  Triceps skinfold thickness (mm).
-  2-Hour serum insulin (mu U/ml).
-  Body mass index (weight in kg/(height in m)^2).
-  Diabetes pedigree function.
-  Age (years).
-  Class variable (0 or 1).
+package com.salesforce.hw.pimaindians
+
+import com.salesforce.hw.pimaindians.PimaIndianFeatures
+import com.salesforce.op._
+import com.salesforce.op.evaluators.Evaluators
+import com.salesforce.op.readers.DataReaders
+import com.salesforce.op.stages.impl.classification.MultiClassificationModelSelector
+import com.salesforce.op.stages.impl.tuning.DataCutter
+import org.apache.spark.sql.Encoders
+
+/**
+ * TransmogrifAI MultiClass Classification example on the Prima Indians Dataset
  */
-case class PrimaIndians
-(
-  numberOfTimesPreg: Double,
-  plasmaGlucose: Double,
-  bp: Double,
-  spinThickness: Double,
-  serumInsulin: Double,
-  bmi: Double,
-  diabetesPredigree : Double,
-  ageInYrs : Double,
-  piClass: String
-)
+class OpPimaIndiansBase extends PimaIndianFeatures {
+
+  implicit val piEncoder = Encoders.product[PimaIndians]
+
+  val piReader = DataReaders.Simple.csvCase[PimaIndians]()
+  val labels = piClass.indexed()
+
+  val features = Seq( numberOfTimesPreg, plasmaGlucose,bp,spinThickness,serumInsulin,
+    bmi,diabetesPredigree,ageInYrs).transmogrify()
+
+  val randomSeed = 42L
+
+  val cutter = DataCutter(reserveTestFraction = 0.2, seed = randomSeed)
+
+  val prediction = MultiClassificationModelSelector
+    .withCrossValidation(splitter = Option(cutter), seed = randomSeed)
+    .setInput(labels, features).getOutput()
+
+  val evaluator = Evaluators.MultiClassification.f1().setLabelCol(labels).setPredictionCol(prediction)
+
+  val workflow = new OpWorkflow().setResultFeatures(prediction, labels)
+}

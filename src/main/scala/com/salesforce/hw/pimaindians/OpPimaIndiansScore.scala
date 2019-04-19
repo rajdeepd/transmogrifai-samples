@@ -28,9 +28,8 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.primaindians
+package com.salesforce.hw.pimaindians
 
-import java.io.File
 import java.util.concurrent.TimeUnit
 
 import com.salesforce.op._
@@ -40,14 +39,14 @@ import org.apache.spark.sql.SparkSession
 import scala.concurrent.duration.Duration
 
 /**
- * TransmogrifAI MultiClass Classification example on the PrimaIndian dataset
+ * TransmogrifAI MultiClass Classification example on the PrimaIndians Dataset
  */
-object OpPrimaIndiansEvaluate  extends OpAppWithRunner with PrimaIndianFeatures {
+object OpPimaIndiansScore  extends OpAppWithRunner with PimaIndianFeatures {
 
-  val conf = new SparkConf().setMaster("local[*]").setAppName("PrimaPrediction")
+  val conf = new SparkConf().setMaster("local[*]").setAppName("PimaPrediction")
   implicit val spark = SparkSession.builder.config(conf).getOrCreate()
 
-  val opPIBase = new OpPrimaIndiansBase()
+  val opPIBase = new OpPimaIndiansBase()
 
   def runner(opParams: OpParams): OpWorkflowRunner =
     new OpWorkflowRunner(
@@ -59,41 +58,22 @@ object OpPrimaIndiansEvaluate  extends OpAppWithRunner with PrimaIndianFeatures 
       featureToComputeUpTo = Option(opPIBase.features)
     )
   /*
-  --run-type=evaluate \
-  --model-location=/tmp/pi-model \
-  --metrics-location=/tmp/pi-metrics \
-  --read-location Iris=`pwd`/src/main/resources/PimaIndiansDataset/pimaindiansdiabetes.data \
-  --write-location=/tmp/pi-eval"
+   --run-type=score \
+    --model-location=/tmp/pi-model \
+    --read-location PrimaIndians=./src/main/resources/PimaIndiansDataset/pimaindiansdiabetes.data \
+    --write-location=/tmp/pi-scores"
    */
   override def main(args: Array[String]): Unit = {
-    val metricsLocation = "/tmp/pi-metrics"
-    val evalLocation = "/tmp/pi-eval"
-
-    val myArgs = Array("--run-type=evaluate", "--model-location=/tmp/pi-model",
-      "--metrics-location=" + metricsLocation,
+    val myArgs = Array("--run-type=score", "--model-location=/tmp/pi-model",
       "--read-location",
       "PrimaIndians=./src/main/resources/PrimaIndiansDataset/primaindiansdiabetes.data",
-      "--write-location=" + evalLocation
+      "--write-location=/tmp/pi-scores"
     )
-    var fileExits = false
-    var reason = ""
-    val file = new File(metricsLocation)
-    val evalFile = new File(evalLocation)
-    if(file.exists()) {
-      fileExits= true
-      reason = metricsLocation + " already exits"
-      println(reason)
-    }
-    if (evalFile.exists()) {
-      fileExits= true
-      reason = evalLocation + " already exits"
-      println(reason)
-    }
-    if(!fileExits){
-      val (runType, opParams) = parseArgs(myArgs)
-      val batchDuration = Duration(opParams.batchDurationSecs.getOrElse(1), TimeUnit.SECONDS)
-      val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
-      run(runType, opParams)(spark, streaming)
-    }
+
+    val (runType, opParams) = parseArgs(myArgs)
+    val batchDuration = Duration(opParams.batchDurationSecs.getOrElse(1), TimeUnit.SECONDS)
+    val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
+    run(runType, opParams)(spark, streaming)
   }
+
 }

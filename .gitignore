@@ -3,3 +3,4 @@ project
 .idea
 target
 *.crc
+.ipynb_checkpoints
