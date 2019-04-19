@@ -66,7 +66,7 @@ object OpPimaIndiansScore  extends OpAppWithRunner with PimaIndianFeatures {
   override def main(args: Array[String]): Unit = {
     val myArgs = Array("--run-type=score", "--model-location=/tmp/pi-model",
       "--read-location",
-      "PrimaIndians=./src/main/resources/PrimaIndiansDataset/primaindiansdiabetes.data",
+      "PimaIndians=./src/main/resources/PrimaIndiansDataset/primaindiansdiabetes.data",
       "--write-location=/tmp/pi-scores"
     )
 

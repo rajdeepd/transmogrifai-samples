@@ -72,7 +72,7 @@ object OpPimaIndiansEvaluate  extends OpAppWithRunner with PimaIndianFeatures {
     val myArgs = Array("--run-type=evaluate", "--model-location=/tmp/pi-model",
       "--metrics-location=" + metricsLocation,
       "--read-location",
-      "PrimaIndians=./src/main/resources/PimaIndiansDataset/pimaindiansdiabetes.data",
+      "PimaIndians=./src/main/resources/PimaIndiansDataset/pimaindiansdiabetes.data",
       "--write-location=" + evalLocation
     )
     var fileExits = false

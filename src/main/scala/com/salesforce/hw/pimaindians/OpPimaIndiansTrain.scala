@@ -65,7 +65,7 @@ object OpPimaIndiansTrain  extends OpAppWithRunner with PimaIndianFeatures {
   override def main(args: Array[String]): Unit = {
     val myArgs = Array("--run-type=train", "--model-location=/tmp/pi-model",
       "--read-location",
-      "PrimaIndians=./src/main/resources/PrimaIndiansDataset/pimaindiansdiabetes.data"
+      "PimaIndians=./src/main/resources/PrimaIndiansDataset/pimaindiansdiabetes.data"
     )
 
     val (runType, opParams) = parseArgs(myArgs)

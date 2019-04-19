@@ -38,14 +38,3 @@ object ModelMetricsDisplay {
 
   }
 }
-/**
-  * A case class to match the json properties.
-  */
-case class EmailAccount(
-                         accountName: String,
-                         url: String,
-                         username: String,
-                         password: String,
-                         minutesBetweenChecks: Int,
-                         usersOfInterest: List[String]
-)
