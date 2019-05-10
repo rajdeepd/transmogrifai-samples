@@ -103,5 +103,4 @@ object OpBoston extends OpAppWithRunner with BostonFeatures {
       scoringEvaluator = None,
       featureToComputeUpTo = Option(houseFeatures)
     )
-
 }

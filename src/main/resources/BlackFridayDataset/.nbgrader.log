@@ -1,0 +1,17 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/rdua/work/github/rajdeepd/transmogrifai-samples/src/main/resources/BlackFridayDataset
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/?token=a227f9838b0a6f8541ba077fa77fb8025a7953e83b578909
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=a227f9838b0a6f8541ba077fa77fb8025a7953e83b578909
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from 127.0.0.1
+[NotebookApp | WARNING] 404 GET /notebooks/BlackFriday_EDA_RandomForestPrediction_v2.ipynb (127.0.0.1): No such file or directory: BlackFriday_EDA_RandomForestPrediction_v2.ipynb
+[NotebookApp | WARNING] 404 GET /notebooks/BlackFriday_EDA_RandomForestPrediction_v2.ipynb (127.0.0.1) 14.37ms referer=None
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 0 kernels
