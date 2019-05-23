@@ -1,0 +1,76 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/rdua/work/github/rajdeepd/transmogrifai-samples/src/main/python
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8889/?token=2202eb6489860d44ff5bb2fc16f322f7406ec840c9ebb16e
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8889/?token=2202eb6489860d44ff5bb2fc16f322f7406ec840c9ebb16e
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from ::1
+[NotebookApp | WARNING] 404 GET /apple-touch-icon-precomposed.png (::1) 7.42ms referer=None
+[NotebookApp | WARNING] 404 GET /apple-touch-icon.png (::1) 1.57ms referer=None
+[NotebookApp | INFO] Kernel started: 5bc2746f-5712-4563-b112-3b32e37d56e1
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 5bc2746f-5712-4563-b112-3b32e37d56e1
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_pimaIndians_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_pimaIndians_analysis.py
+[NotebookApp | INFO] Kernel started: 8274cd14-1054-495e-bf04-5ff6a93bccc7
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 8274cd14-1054-495e-bf04-5ff6a93bccc7
+[NotebookApp | INFO] Starting buffering for 5bc2746f-5712-4563-b112-3b32e37d56e1:7c1942132c8045e486b7a50fa3e5c341
+[NotebookApp | INFO] Kernel restarted: 5bc2746f-5712-4563-b112-3b32e37d56e1
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 5bc2746f-5712-4563-b112-3b32e37d56e1
+[NotebookApp | INFO] Restoring connection for 5bc2746f-5712-4563-b112-3b32e37d56e1:7c1942132c8045e486b7a50fa3e5c341
+[NotebookApp | INFO] Replaying 6 buffered messages
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_pimaIndians_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_pimaIndians_analysis.py
+[NotebookApp | INFO] Saving file at /pimaindians/transmogrifai_pimaIndians_analysis.ipynb
+[NotebookApp | INFO] Saving script /pimaindians/transmogrifai_pimaIndians_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_pimaIndians_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_pimaIndians_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/transmogrifai_simple_regression_analysis.py
+[NotebookApp | WARNING] 404 GET /notebooks/ch02/shared_layer_cifar10.ipynb (::1): No such file or directory: ch02/shared_layer_cifar10.ipynb
+[NotebookApp | WARNING] 404 GET /notebooks/ch02/shared_layer_cifar10.ipynb (::1) 128.38ms referer=None
+[NotebookApp | INFO] Creating new notebook in /simple_regression
+[NotebookApp | INFO] Saving script /simple_regression/Untitled.txt
+[NotebookApp | INFO] Kernel started: 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Starting buffering for 50d68cc9-86ec-43f3-8655-ae904e81a4c0:70bd12e9e5e84455a85e789abd04d1b8
+[NotebookApp | INFO] Kernel restarted: 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Restoring connection for 50d68cc9-86ec-43f3-8655-ae904e81a4c0:70bd12e9e5e84455a85e789abd04d1b8
+[NotebookApp | INFO] Replaying 6 buffered messages
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Starting buffering for 50d68cc9-86ec-43f3-8655-ae904e81a4c0:70bd12e9e5e84455a85e789abd04d1b8
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Starting buffering for 50d68cc9-86ec-43f3-8655-ae904e81a4c0:30a284300d444df68df9036971e147e5
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 50d68cc9-86ec-43f3-8655-ae904e81a4c0
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | INFO] Saving file at /simple_regression/dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /simple_regression/dataset_analysis.py
+[NotebookApp | WARNING] WebSocket ping timeout after 988870 ms.
+[NotebookApp | INFO] Starting buffering for 5bc2746f-5712-4563-b112-3b32e37d56e1:7c1942132c8045e486b7a50fa3e5c341

@@ -1,0 +1,45 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/rdua/work/github/rajdeepd/transmogrifai-samples/src/main/python/simple_regression
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/?token=e27c84c378e38f057001959653bee4784ce44908a3a018a1
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | CRITICAL] 
+    
+    Copy/paste this URL into your browser when you connect for the first time,
+    to login with a token:
+        http://localhost:8888/?token=e27c84c378e38f057001959653bee4784ce44908a3a018a1
+[NotebookApp | INFO] Accepting one-time-token-authenticated connection from 127.0.0.1
+[NotebookApp | INFO] Kernel started: 942846cf-2176-4abf-8b99-9a03a853dd08
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 942846cf-2176-4abf-8b99-9a03a853dd08
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.py
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.py
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.py
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.py
+[NotebookApp | WARNING] WebSocket ping timeout after 17426444 ms.
+[NotebookApp | INFO] Starting buffering for 942846cf-2176-4abf-8b99-9a03a853dd08:c5ead0edbbf647aba4c8b9c022e019e6
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.py
+[NotebookApp | INFO] Kernel restarted: 942846cf-2176-4abf-8b99-9a03a853dd08
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 942846cf-2176-4abf-8b99-9a03a853dd08
+[NotebookApp | INFO] Restoring connection for 942846cf-2176-4abf-8b99-9a03a853dd08:c5ead0edbbf647aba4c8b9c022e019e6
+[NotebookApp | INFO] Replaying 5 buffered messages
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.txt
+[NotebookApp | INFO] Kernel started: e8a9b97b-496b-44a9-82e0-05fdb127904e
+[NotebookApp | WARNING] 404 GET /apple-touch-icon-precomposed.png (127.0.0.1) 21.36ms referer=None
+[NotebookApp | WARNING] 404 GET /apple-touch-icon.png (127.0.0.1) 1.49ms referer=None
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel e8a9b97b-496b-44a9-82e0-05fdb127904e
+[NotebookApp | INFO] Saving file at /dataset_analysis.ipynb
+[NotebookApp | INFO] Saving script /dataset_analysis.txt
+[NotebookApp | WARNING] WebSocket ping timeout after 690002 ms.
+[NotebookApp | INFO] Starting buffering for 942846cf-2176-4abf-8b99-9a03a853dd08:c5ead0edbbf647aba4c8b9c022e019e6
+[NotebookApp | INFO] Saving file at /transmogrifai_simple_regression_analysis.ipynb
+[NotebookApp | INFO] Saving script /transmogrifai_simple_regression_analysis.py
+[NotebookApp | INFO] 302 GET /notebooks/helloworld-notebooks/OpIris.ipynb (::1) 140.49ms
+[NotebookApp | WARNING] WebSocket ping timeout after 2039995 ms.
+[NotebookApp | INFO] Starting buffering for e8a9b97b-496b-44a9-82e0-05fdb127904e:a7f1888f8d754fa3b20b93a002605456

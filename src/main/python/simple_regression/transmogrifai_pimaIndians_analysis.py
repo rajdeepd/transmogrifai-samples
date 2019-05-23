@@ -10,7 +10,7 @@ import pandas as pd
 # In[2]:
 
 
-path = '../../../../output/pimaindians/modeleval/output.csv'
+path = '../../../../output/simple_regression/modeleval/output.csv'
 
 
 # In[3]:
@@ -49,34 +49,36 @@ data_name_metrics_np
 
 x = data_name_metrics_np[:,0]
 y = data_name_metrics_np[:,1]
+y
 
 
 # In[10]:
 
 
+#%matplotlib
 from matplotlib import pyplot as plt 
 
 plt.bar(x, y, align = 'center')  
-plt.title('TransmogrifAI - PimaIndians, Algorithm vs Error') 
+plt.title('TransmogrifAI - Simple Regression, Algorithm vs Error') 
 plt.ylabel('Error') 
 plt.xlabel('Algorithm Name')  
-plt.xticks(rotation=90)
+#plt.xticks(rotation=90)
 plt.show()
 
 
-# In[11]:
+# In[ ]:
 
 
 data_lr = data.loc[data['modelType'] == 'OpLogisticRegression']
 
 
-# In[11]:
+# In[ ]:
 
 
 data_lr_filtered = data_lr.iloc[:,[2,4]] 
 
 
-# In[12]:
+# In[ ]:
 
 
 data_lr_np = data_lr_filtered.values
@@ -85,7 +87,7 @@ y_lr = data_lr_np[:,1]
 data_lr_np 
 
 
-# In[18]:
+# In[ ]:
 
 
 from matplotlib import pyplot as plt
@@ -98,19 +100,19 @@ plt.xticks(rotation=90)
 plt.show()
 
 
-# In[19]:
+# In[ ]:
 
 
 data_rf = data.loc[data['modelType'] == 'OpRandomForestClassifier']
 
 
-# In[20]:
+# In[ ]:
 
 
 data_rf_filtered = data_rf.iloc[:,[3,4]] 
 
 
-# In[21]:
+# In[ ]:
 
 
 data_rf_np = data_rf_filtered.values
@@ -119,7 +121,7 @@ y_rf = data_rf_np[:,1]
 data_rf_np 
 
 
-# In[22]:
+# In[ ]:
 
 
 from matplotlib import pyplot as plt

@@ -28,11 +28,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.regression
+package com.salesforce.hw.regression.runner
 
-import java.io.File
 import java.util.concurrent.TimeUnit
 
+import com.salesforce.hw.regression.SimpleRegressionFeatures
 import com.salesforce.op._
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
@@ -40,54 +40,33 @@ import org.apache.spark.sql.SparkSession
 import scala.concurrent.duration.Duration
 
 /**
- * TransmogrifAI SimpleRegression example on the single variable dataset
+ * TransmogrifAI MultiClass Classification example on the Simple Regression Dataset
  */
-object OpSimpleRegressionEvaluate  extends OpAppWithRunner with SimpleRegressionFeatures {
+object OpSimpleRegressionScore extends OpAppWithRunner with SimpleRegressionFeatures {
 
-  val conf = new SparkConf().setMaster("local[*]").setAppName("SimpleRegressionPrediction")
+  val conf = new SparkConf().setMaster("local[*]").setAppName("SRPrediction")
   implicit val spark = SparkSession.builder.config(conf).getOrCreate()
 
-  val opPIBase = new OpSimpleRegressionBase()
+  val opSRBase = new OpSimpleRegressionBase()
 
   def runner(opParams: OpParams): OpWorkflowRunner =
     new OpWorkflowRunner(
-      workflow = opPIBase.workflow,
-      trainingReader = opPIBase.srReader,
-      scoringReader = opPIBase.srReader,
-      evaluationReader = Option(opPIBase.srReader),
-      evaluator = Option(opPIBase.evaluator),
-      featureToComputeUpTo = Option(opPIBase.features)
+      workflow = opSRBase.workflow,
+      trainingReader = opSRBase.srReader,
+      scoringReader = opSRBase.srReader,
+      evaluationReader = Option(opSRBase.srReader),
+      evaluator = Option(opSRBase.evaluator),
+      featureToComputeUpTo = Option(opSRBase.features)
     )
 
   override def main(args: Array[String]): Unit = {
-    val metricsLocation = "/tmp/sr-metrics"
-    val evalLocation = "/tmp/sr-eval"
-
-    val myArgs = Array("--run-type=evaluate", "--model-location=/tmp/sr-model",
-      "--metrics-location=" + metricsLocation,
-      "--read-location",
-      "SimpleRegression=./src/main/resources/SimpleRegressionDataset/simple_regression.csv",
-      "--write-location=" + evalLocation
-    )
-    var fileExits = false
-    var reason = ""
-    val file = new File(metricsLocation)
-    val evalFile = new File(evalLocation)
-    if(file.exists()) {
-      fileExits= true
-      reason = metricsLocation + " already exits"
-      println(reason)
-    }
-    if (evalFile.exists()) {
-      fileExits= true
-      reason = evalLocation + " already exits"
-      println(reason)
-    }
-    if(!fileExits){
-      val (runType, opParams) = parseArgs(myArgs)
-      val batchDuration = Duration(opParams.batchDurationSecs.getOrElse(1), TimeUnit.SECONDS)
-      val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
-      run(runType, opParams)(spark, streaming)
-    }
+    val myArgs = Array("--run-type=score", "--model-location=/tmp/sr-model",
+      "--read-location", "SimpleRegression=./src/main/resources/SimpleRegressionDataset/simple_regression.csv",
+      "--write-location=/tmp/sr-scores")
+    val (runType, opParams) = parseArgs(myArgs)
+    val batchDuration = Duration(opParams.batchDurationSecs.getOrElse(1), TimeUnit.SECONDS)
+    val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
+    run(runType, opParams)(spark, streaming)
   }
+
 }

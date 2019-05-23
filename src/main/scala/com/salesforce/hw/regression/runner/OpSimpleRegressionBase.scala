@@ -28,27 +28,25 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.regression
+package com.salesforce.hw.regression.runner
 
+import com.salesforce.hw.regression.{SimpleRegression, SimpleRegressionFeatures}
 import com.salesforce.op._
 import com.salesforce.op.evaluators.Evaluators
 import com.salesforce.op.readers.DataReaders
-import com.salesforce.op.stages.impl.classification.MultiClassificationModelSelector
 import com.salesforce.op.stages.impl.regression.RegressionModelSelector
 import com.salesforce.op.stages.impl.regression.RegressionModelsToTry._
-import com.salesforce.op.stages.impl.tuning.DataCutter
+import com.salesforce.op.stages.impl.tuning.{DataCutter, DataSplitter}
 import org.apache.spark.sql.Encoders
-import com.salesforce.op.stages.impl.tuning.DataSplitter
 
 /**
- * TransmogrifAI MultiClass Classification example on the Iris Dataset
+ * TransmogrifAI Regression example
  */
 class OpSimpleRegressionBase extends SimpleRegressionFeatures {
 
   implicit val srEncoder = Encoders.product[SimpleRegression]
 
   val srReader = DataReaders.Simple.csvCase[SimpleRegression]()
-  //val labels = purchase.asRaw()
 
   val features = Seq(population).transmogrify()
   val splitter = DataSplitter(seed = randomSeed)
@@ -57,17 +55,14 @@ class OpSimpleRegressionBase extends SimpleRegressionFeatures {
 
   val cutter = DataCutter(reserveTestFraction = 0.2, seed = randomSeed)
 
-  /*val prediction = RegressionModelSelector
-    .withCrossValidation(splitter = Option(cutter), seed = randomSeed)
-    .setInput(profit, features).getOutput()*/
   val prediction = RegressionModelSelector
     .withCrossValidation(
       dataSplitter = Some(splitter), seed = randomSeed,
       modelTypesToUse = Seq(OpGBTRegressor, OpRandomForestRegressor)
     ).setInput(profit, features).getOutput()
 
-  //val evaluator = Evaluators.MultiClassification.f1().setLabelCol(labels).setPredictionCol(prediction)
-  val evaluator = Evaluators.Regression().setLabelCol(profit).setPredictionCol(prediction)
+  val evaluator = Evaluators.Regression().setLabelCol(profit).
+    setPredictionCol(prediction)
 
   val workflow = new OpWorkflow().setResultFeatures(prediction, profit)
 

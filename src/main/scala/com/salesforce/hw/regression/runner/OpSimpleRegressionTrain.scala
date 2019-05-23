@@ -28,10 +28,11 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.salesforce.hw.regression
+package com.salesforce.hw.regression.runner
 
 import java.util.concurrent.TimeUnit
 
+import com.salesforce.hw.regression.SimpleRegressionFeatures
 import com.salesforce.op._
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
@@ -39,7 +40,7 @@ import org.apache.spark.sql.SparkSession
 import scala.concurrent.duration.Duration
 
 /**
- * TransmogrifAI MultiClass Classification example on the Simple Regression Dataset
+ * TransmogrifAI Regression
  */
 object OpSimpleRegressionTrain extends OpAppWithRunner with SimpleRegressionFeatures {
 
@@ -57,11 +58,7 @@ object OpSimpleRegressionTrain extends OpAppWithRunner with SimpleRegressionFeat
       evaluator = Option(opSRBase.evaluator),
       featureToComputeUpTo = Option(opSRBase.features)
     )
-  /*
-  --run-type=train \
-  --model-location=/tmp/iris-model \
-  --read-location Iris=`pwd`/src/main/resources/IrisDataset/iris.data"
-   */
+
   override def main(args: Array[String]): Unit = {
     val myArgs = Array("--run-type=train", "--model-location=/tmp/sr-model",
       "--read-location", "SimpleRegression=./src/main/resources/SimpleRegressionDataset/simple_regression.csv")
