@@ -58,7 +58,7 @@ object OpIrisScore extends OpAppWithRunner with IrisFeatures {
       featureToComputeUpTo = Option(opIrisBase.features)
     )
   /*
- --run-type=score \
+  --run-type=score \
   --model-location=/tmp/iris-model \
   --read-location Iris=`pwd`/src/main/resources/IrisDataset/bezdekIris.data \
   --write-location=/tmp/iris-scores"

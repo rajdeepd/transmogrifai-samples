@@ -7,18 +7,17 @@ import com.salesforce.op.stages.impl.regression.RegressionModelSelector
 import com.salesforce.op.stages.impl.regression.RegressionModelsToTry.{OpGBTRegressor, OpRandomForestRegressor}
 import com.salesforce.op.stages.impl.tuning.{DataCutter, DataSplitter}
 import org.apache.spark.sql.{Encoders, SparkSession}
-import com.salesforce.hw.regression.SimpleRegressionFeatures
 import com.salesforce.op.features.FeatureBuilder
 import org.apache.spark.SparkConf
 import com.salesforce.op.features.types._
 
 object OpSimpleRegressionComplete {
   def main(args: Array[String]): Unit = {
-    print("hello")
     val conf = new SparkConf().setMaster("local[*]").setAppName("..")
     implicit val spark = SparkSession.builder.config(conf).getOrCreate()
 
     implicit val srEncoder = Encoders.product[SimpleRegression]
+
     val population = FeatureBuilder.RealNN[SimpleRegression].extract(_.population.toRealNN).asPredictor
     val profit = FeatureBuilder.RealNN[SimpleRegression].extract(_.profit.toRealNN).asResponse
 
@@ -45,12 +44,18 @@ object OpSimpleRegressionComplete {
 
     val workflow = new OpWorkflow().setResultFeatures(prediction, profit).setReader(trainDataReader)
     val workflowModel = workflow.train()
-    print(workflowModel)
-    val dataFrame = workflowModel.score()
-    val df2 = dataFrame.withColumnRenamed("population-profit_3-stagesApplied_Prediction_00000000000f","predicted_profit")
-    df2.show(false)
-    val dataFrameMod = dataFrame.rdd.map(x => x(2).toString.split("->")(1).dropRight(1).dropRight(1))
-    dataFrameMod.foreach(println)
-    dataFrameMod.saveAsTextFile("./output/simple_regression/predictions")
+
+
+    val dfScoreAndEvaluate = workflowModel.scoreAndEvaluate(evaluator)
+    val dfScore = dfScoreAndEvaluate._1.withColumnRenamed("population-profit_3-stagesApplied_Prediction_00000000000f",
+      "predicted_profit")
+    val dfEvaluate = dfScoreAndEvaluate._2
+    println("Evaluate:\n" + dfEvaluate.toString())
+
+    dfScore.show(false)
+
+    val dfScoreMod = dfScore.rdd.map(x => x(2).toString.split("->")(1).dropRight(1).dropRight(1))
+    dfScoreMod.foreach(println)
+    dfScoreMod.saveAsTextFile("./output/simple_regression/predictions")
   }
 }

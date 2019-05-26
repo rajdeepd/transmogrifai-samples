@@ -70,5 +70,4 @@ object OpIrisTrain extends OpAppWithRunner with IrisFeatures {
     val (spark, streaming) = sparkSession -> sparkStreamingContext(batchDuration)
     run(runType, opParams)(spark, streaming)
   }
-
 }
