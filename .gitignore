@@ -4,3 +4,7 @@ project
 target
 *.crc
 .ipynb_checkpoints
+.nbgrader.log
+.ipynb
+.ipynb_py
+.nbgrader.log
