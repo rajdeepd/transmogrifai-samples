@@ -8,3 +8,4 @@ target
 .ipynb
 .ipynb_py
 .nbgrader.log
+*.py
