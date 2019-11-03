@@ -1,11 +1,7 @@
-.DS_Store
-project
-.idea
-target
-*.crc
-.ipynb_checkpoints
-.nbgrader.log
-.ipynb
-.ipynb_py
-.nbgrader.log
 *.py
+.DS_Store
+output
+.idea
+src/**/*.py
+notebooks/**/.ipynb_checkpoints
+
